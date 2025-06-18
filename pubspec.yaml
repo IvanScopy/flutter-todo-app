@@ -1,5 +1,5 @@
 name: to_do_app
-description: "A new Flutter project."
+description: "A Flutter-based to-do application for managing daily tasks"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -34,6 +34,22 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  
+  # State Management
+  provider: ^6.1.2
+  
+  # Database
+  sqflite: ^2.3.0
+  path: ^1.8.3
+  
+  # UI Components
+  flutter_slidable: ^3.1.0
+  
+  # Date and Time
+  intl: ^0.19.0
+  
+  # Icons
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
