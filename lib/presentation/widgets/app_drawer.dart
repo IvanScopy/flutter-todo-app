@@ -4,6 +4,7 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_strings.dart';
 import '../providers/task_provider.dart';
 import '../providers/category_provider.dart';
+import '../screens/settings_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -359,12 +360,12 @@ class AppDrawer extends StatelessWidget {
       const SnackBar(content: Text('Categories screen coming soon')),
     );
   }
-
   void _openSettings(BuildContext context) {
     Navigator.of(context).pop(); // Close drawer
-    // TODO: Navigate to settings screen
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Settings screen coming soon')),
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const SettingsScreen(),
+      ),
     );
   }
 

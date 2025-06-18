@@ -44,9 +44,18 @@ dependencies:
   
   # UI Components
   flutter_slidable: ^3.1.0
-  
-  # Date and Time
+    # Date and Time
   intl: ^0.19.0
+    # Notifications
+  flutter_local_notifications: ^17.2.1+2
+  timezone: ^0.9.4
+  
+  # Performance
+  cached_network_image: ^3.3.1
+  
+  # Analytics & Crash Reporting
+  firebase_analytics: ^11.2.1
+  firebase_crashlytics: ^4.0.4
   
   # Icons
   flutter_svg: ^2.0.10+1
