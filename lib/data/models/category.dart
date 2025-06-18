@@ -43,17 +43,13 @@ class Category {
       'createdAt': createdAt.millisecondsSinceEpoch,
     };
   }
-
   // Create Category from Map (database result)
   factory Category.fromMap(Map<String, dynamic> map) {
     return Category(
       id: map['id']?.toInt(),
       name: map['name'] ?? '',
       color: map['color'] ?? '#2196F3',
-      icon: IconData(
-        map['iconCodePoint'] ?? Icons.label.codePoint,
-        fontFamily: map['iconFontFamily'],
-      ),
+      icon: _getIconFromCodePoint(map['iconCodePoint'] ?? Icons.label.codePoint),
       createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt']),
     );
   }
@@ -69,17 +65,13 @@ class Category {
       'createdAt': createdAt.toIso8601String(),
     };
   }
-
   // Create Category from JSON
   factory Category.fromJson(Map<String, dynamic> json) {
     return Category(
       id: json['id']?.toInt(),
       name: json['name'] ?? '',
       color: json['color'] ?? '#2196F3',
-      icon: IconData(
-        json['iconCodePoint'] ?? Icons.label.codePoint,
-        fontFamily: json['iconFontFamily'],
-      ),
+      icon: _getIconFromCodePoint(json['iconCodePoint'] ?? Icons.label.codePoint),
       createdAt: DateTime.parse(json['createdAt']),
     );
   }
@@ -109,6 +101,28 @@ class Category {
   @override
   int get hashCode {
     return Object.hash(id, name, color, icon, createdAt);
+  }
+
+  // Helper method to get icon from code point (constant)
+  static IconData _getIconFromCodePoint(int codePoint) {
+    // Map common icons to constants
+    switch (codePoint) {
+      case 0xe047: // Icons.work
+        return Icons.work;
+      case 0xe88e: // Icons.home
+        return Icons.home;
+      case 0xe5ca: // Icons.school
+        return Icons.school;
+      case 0xe57e: // Icons.sports_soccer
+        return Icons.sports_soccer;
+      case 0xe56c: // Icons.shopping_cart
+        return Icons.shopping_cart;
+      case 0xe1b8: // Icons.health_and_safety
+        return Icons.health_and_safety;
+      case 0xe39d: // Icons.label
+      default:
+        return Icons.label;
+    }
   }
 }
 

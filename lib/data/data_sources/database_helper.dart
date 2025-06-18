@@ -1,5 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:flutter/foundation.dart';
 import '../models/category.dart';
 
 class DatabaseHelper {
@@ -11,6 +12,9 @@ class DatabaseHelper {
   factory DatabaseHelper() => _instance;
 
   Future<Database> get database async {
+    if (kIsWeb) {
+      throw UnsupportedError('SQLite is not supported on web platform');
+    }
     _database ??= await _initDatabase();
     return _database!;
   }

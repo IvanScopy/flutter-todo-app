@@ -12,24 +12,20 @@ class TaskFilterTabs extends StatelessWidget {
     return Consumer<TaskProvider>(
       builder: (context, taskProvider, child) {
         return Container(
+          height: 80,
           decoration: BoxDecoration(
             color: Colors.white,
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withOpacity(0.1),
+                color: Colors.grey.withValues(alpha: 0.1),
                 spreadRadius: 1,
                 blurRadius: 3,
                 offset: const Offset(0, 1),
               ),
             ],
           ),
-          child: TabBar(
-            controller: null,
-            isScrollable: false,
-            labelColor: Theme.of(context).primaryColor,
-            unselectedLabelColor: Colors.grey[600],
-            indicatorColor: Theme.of(context).primaryColor,
-            indicatorWeight: 3,            tabs: [
+          child: Row(
+            children: [
               _buildTab(
                 AppStrings.all,
                 taskProvider.totalTasksCount,
@@ -60,6 +56,7 @@ class TaskFilterTabs extends StatelessWidget {
       },
     );
   }
+
   Widget _buildTab(
     String title,
     int count,
@@ -69,41 +66,46 @@ class TaskFilterTabs extends StatelessWidget {
     BuildContext context,
   ) {
     final isSelected = currentFilter == filter;
-    return GestureDetector(
-      onTap: () => taskProvider.setFilter(filter),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              title,
-              style: TextStyle(
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
-                fontSize: 14,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-              decoration: BoxDecoration(
-                color: isSelected 
-                    ? Theme.of(context).primaryColor.withOpacity(0.1)
-                    : Colors.grey.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Text(
-                count.toString(),
+    return Expanded(
+      child: GestureDetector(
+        onTap: () => taskProvider.setFilter(filter),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                title,
                 style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                  fontSize: 14,
                   color: isSelected 
                       ? Theme.of(context).primaryColor
                       : Colors.grey[600],
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 4),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                decoration: BoxDecoration(
+                  color: isSelected 
+                      ? Theme.of(context).primaryColor.withValues(alpha: 0.1)
+                      : Colors.grey.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  count.toString(),
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: isSelected 
+                        ? Theme.of(context).primaryColor
+                        : Colors.grey[600],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

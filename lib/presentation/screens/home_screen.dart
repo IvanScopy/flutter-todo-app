@@ -19,11 +19,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   bool _isSearching = false;
   final TextEditingController _searchController = TextEditingController();
-
   @override
   void initState() {
     super.initState();
-    _initializeProviders();
+    // Delay initialization to avoid setState during build
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _initializeProviders();
+    });
   }
 
   Future<void> _initializeProviders() async {
